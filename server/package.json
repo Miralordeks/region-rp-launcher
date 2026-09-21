@@ -1,0 +1,13 @@
+{
+  "name": "region-rp-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "API Region RP: сессии лаунчера и данные игроков с сервера",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

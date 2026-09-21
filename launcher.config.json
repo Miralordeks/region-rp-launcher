@@ -1,0 +1,16 @@
+{
+  "placeId": "115669554487744",
+  "discordClientId": "1551328944555429970",
+  "gameName": "Регион РП",
+  "links": {
+    "discord": "https://discord.gg/GhNc7TqsUe",
+    "website": "https://discord.gg/GhNc7TqsUe",
+    "rules": "https://discord.gg/GhNc7TqsUe"
+  },
+  "updateFeedUrl": "",
+  "onlinePlayers": 0,
+  "playerApi": {
+    "baseUrl": "https://region-rp-api.onrender.com",
+    "apiKey": ""
+  }
+}

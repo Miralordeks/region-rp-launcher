@@ -1,0 +1,74 @@
+:root {
+  --bg-deep: #050a14;
+  --bg-mid: #0a1424;
+  --fog: #122038;
+  --line: rgba(120, 190, 255, 0.14);
+  --text: #f2f7ff;
+  --muted: rgba(180, 205, 235, 0.72);
+  --accent: #1ea7ff;
+  --accent-bright: #4fc3ff;
+  --accent-deep: #0d6fbf;
+  --accent-glow: rgba(30, 167, 255, 0.4);
+  --signal: #3dd6c6;
+  --danger: #ff6b6b;
+  --news-bg: rgba(8, 16, 30, 0.62);
+  --radius: 14px;
+  --font-display: 'Unbounded', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(120, 190, 255, 0.22);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}

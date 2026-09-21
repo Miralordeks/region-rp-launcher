@@ -1,0 +1,79 @@
+{
+  "name": "region-rp-launcher",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Лаунчер Region RP — Roblox RP проект",
+  "main": "dist-electron/main.js",
+  "author": "Region RP",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "icon": "node scripts/make-icon.js",
+    "start": "electron .",
+    "dist": "npm run icon && npm run build && electron-builder --win --x64"
+  },
+  "build": {
+    "appId": "ru.regionrp.launcher",
+    "productName": "Region RP",
+    "directories": {
+      "output": "out-win"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*",
+      "build/icon.png",
+      "build/icon.ico",
+      "launcher.config.json",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "build/icon.png",
+        "to": "icon.png"
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "build/icon.ico",
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "shortcutName": "Region RP",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "installerHeaderIcon": "build/icon.ico"
+    },
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "https://example.com/region-rp-updates"
+      }
+    ]
+  },
+  "dependencies": {
+    "discord-rpc": "^4.0.1",
+    "electron-updater": "^6.8.9"
+  },
+  "devDependencies": {
+    "@types/discord-rpc": "^4.0.9",
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^34.3.0",
+    "electron-builder": "^25.1.8",
+    "png-to-ico": "^3.0.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sharp": "^0.35.4",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.1",
+    "vite-plugin-electron": "^0.29.0",
+    "vite-plugin-electron-renderer": "^0.14.6"
+  }
+}
