@@ -91,25 +91,27 @@ const server = http.createServer(async (req, res) => {
   if (req.method === 'POST' && route === '/player') {
     try {
       const body = await readBody(req)
-      const key = body.token
-        ? String(body.token)
-        : body.userId
-          ? `u:${String(body.userId)}`
-          : null
-      if (!key) return send(res, 400, { ok: false, error: 'token or userId required' })
-      let session = sessions.get(key)
-      if (!session) {
-        session = { onServer: false, playerName: '', rank: '', createdAt: Date.now() }
-        sessions.set(key, session)
+      const keys = []
+      if (body.token) keys.push(String(body.token))
+      if (body.userId) keys.push(`u:${String(body.userId)}`)
+      if (keys.length === 0) {
+        return send(res, 400, { ok: false, error: 'token or userId required' })
       }
-      session.onServer = Boolean(body.onServer)
-      session.playerName = String(body.playerName || '')
-      session.rank = String(body.rank || '')
-      if (!session.onServer) {
-        setTimeout(() => {
-          sessions.delete(key)
-          persist()
-        }, 60_000)
+      for (const key of keys) {
+        let session = sessions.get(key)
+        if (!session) {
+          session = { onServer: false, playerName: '', rank: '', createdAt: Date.now() }
+          sessions.set(key, session)
+        }
+        session.onServer = Boolean(body.onServer)
+        session.playerName = String(body.playerName || '')
+        session.rank = String(body.rank || '')
+        if (!session.onServer) {
+          setTimeout(() => {
+            sessions.delete(key)
+            persist()
+          }, 60_000)
+        }
       }
       persist()
       return send(res, 200, { ok: true })
