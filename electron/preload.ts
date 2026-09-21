@@ -15,6 +15,8 @@ const api = {
     ipcRenderer.invoke('roblox:launch') as Promise<LaunchResult>,
   getConfig: () =>
     ipcRenderer.invoke('config:get') as Promise<LauncherConfig>,
+  getJoinCode: () =>
+    ipcRenderer.invoke('session:get-code') as Promise<string>,
   getSettings: () =>
     ipcRenderer.invoke('settings:get') as Promise<UserSettings>,
   setSettings: (partial: Partial<UserSettings>) =>

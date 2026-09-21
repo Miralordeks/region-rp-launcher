@@ -7,6 +7,7 @@ type Props = {
   error: string | null
   onlinePlayers: number
   links: LauncherLinks
+  joinCode: string
   onLaunch: () => void
   onOpenLink: (url: string) => void
 }
@@ -16,6 +17,7 @@ export function Hero({
   error,
   onlinePlayers,
   links,
+  joinCode,
   onLaunch,
   onOpenLink,
 }: Props) {
@@ -61,6 +63,16 @@ export function Hero({
           <span>Автоматический вход на сервер</span>
         </div>
       </div>
+
+      {joinCode ? (
+        <div className="join-code">
+          <span className="join-code__label">Код сервера</span>
+          <strong className="join-code__value">{joinCode}</strong>
+          <span className="join-code__hint">
+            Введи этот код в игре, чтобы сервер узнал тебя
+          </span>
+        </div>
+      ) : null}
 
       <div className="link-row">
         <button

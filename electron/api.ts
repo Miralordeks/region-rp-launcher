@@ -45,8 +45,25 @@ export async function getPlayerStatus(
   options: ApiOptions,
   token: string,
 ): Promise<PlayerStatus> {
+  return getPlayerStatusRemote(options, { token })
+}
+
+export async function getPlayerStatusByUserId(
+  options: ApiOptions,
+  userId: number,
+): Promise<PlayerStatus> {
+  return getPlayerStatusRemote(options, { userId })
+}
+
+async function getPlayerStatusRemote(
+  options: ApiOptions,
+  query: { token?: string; userId?: number },
+): Promise<PlayerStatus> {
+  const params = new URLSearchParams()
+  if (query.token) params.set('token', query.token)
+  if (query.userId) params.set('userId', String(query.userId))
   const response = await request(
-    `${options.baseUrl.replace(/\/$/, '')}/player?token=${encodeURIComponent(token)}`,
+    `${options.baseUrl.replace(/\/$/, '')}/player?${params.toString()}`,
     { method: 'GET' },
     options.apiKey,
   )

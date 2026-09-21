@@ -28,6 +28,7 @@ const defaultSettings: UserSettings = {
 export default function App() {
   const [launching, setLaunching] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [joinCode, setJoinCode] = useState('')
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [onlinePlayers, setOnlinePlayers] = useState(0)
   const [links, setLinks] = useState<LauncherLinks>(defaultLinks)
@@ -66,6 +67,9 @@ export default function App() {
       const result = await window.regionrp.launchRoblox()
       if (!result.ok) {
         setError(result.error)
+      } else {
+        const code = await window.regionrp.getJoinCode()
+        setJoinCode(code)
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Ошибка запуска')
@@ -115,6 +119,7 @@ export default function App() {
             error={error}
             onlinePlayers={onlinePlayers}
             links={links}
+            joinCode={joinCode}
             onLaunch={handleLaunch}
             onOpenLink={handleOpenLink}
           />

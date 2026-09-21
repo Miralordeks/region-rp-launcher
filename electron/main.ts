@@ -9,7 +9,7 @@ import path from 'node:path'
 import fs from 'node:fs'
 import { startDiscordPresence, stopDiscordPresence } from './discord'
 import { launchRoblox } from './roblox'
-import { startServerMonitor, stopServerMonitor } from './session'
+import { startServerMonitor, stopServerMonitor, getJoinCode } from './session'
 import { getConfig } from './config'
 import {
   getSettings,
@@ -127,6 +127,8 @@ function registerIpc() {
   })
 
   ipcMain.handle('config:get', () => getConfig())
+
+  ipcMain.handle('session:get-code', () => getJoinCode())
 
   ipcMain.handle('settings:get', () => getSettings())
 
